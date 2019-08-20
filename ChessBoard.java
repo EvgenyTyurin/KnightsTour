@@ -1,3 +1,6 @@
+/**
+ * Chess board
+ */
 
 class ChessBoard {
     private int size;
@@ -12,7 +15,7 @@ class ChessBoard {
     void print() {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++)
-                System.out.print(boardCells[x][y] + "  ");
+                System.out.print(String.format("%3s", String.valueOf(boardCells[x][y])));
             System.out.print("\n");
         }
         System.out.print("\n");
@@ -22,11 +25,11 @@ class ChessBoard {
         boardCells[x][y] = ++visit;
     }
 
-    public int[][] getBoardCells() {
+    int[][] getBoardCells() {
         return boardCells;
     }
 
-    public int getSize() {
+    int getSize() {
         return size;
     }
 }

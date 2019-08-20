@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+/**
+ * Knight figure
+ */
 
 class KnightFigure {
     private int x, y;
@@ -11,31 +14,14 @@ class KnightFigure {
         move(new Point(x, y));
     }
 
-    private void move(Point point) {
+    void move(Point point) {
         this.x = point.x;
         this.y = point.y;
         chessBoard.visitCell(x, y);
     }
 
-    void tour() {
-        do {
-            ArrayList<Point> moves = getMoves(x, y);
-            if (moves.isEmpty())
-                break;
-            int bestMove = 0;
-            int minVariants = getMoves(moves.get(bestMove).x, moves.get(bestMove).y).size();
-            for (int idx = 1; idx < moves.size(); idx++) {
-                int variants = getMoves(moves.get(idx).x, moves.get(idx).y).size();
-                if (variants < minVariants) {
-                    bestMove = idx;
-                    minVariants = variants;
-                }
-            }
-            move(moves.get(bestMove));
-        } while (true);
-    }
-
-    private ArrayList<Point> getMoves(int x, int y) {
+    /** Returns collection of of possible moves from x,y position */
+    ArrayList<Point> getMoves(int x, int y) {
         ArrayList<Point> movePoints = new ArrayList<>();
         if (x > 1 && y > 0 && chessBoard.getBoardCells()[x - 2][y - 1] == 0)
             movePoints.add(new Point(x - 2 , y - 1));
@@ -56,4 +42,11 @@ class KnightFigure {
         return movePoints;
     }
 
+    int getX() {
+        return x;
+    }
+
+    int getY() {
+        return y;
+    }
 }
